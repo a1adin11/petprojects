@@ -1,0 +1,31 @@
+.cartItem {
+    border: #5c5c5c solid 2px;
+    border-radius: 20px;
+    max-width: 87%;
+    padding: 20px;
+    margin-bottom: 20px;
+    display: flex;
+
+    img {
+      margin-right: 15px;
+    }
+
+    p {
+      max-width: 150px;
+      margin: 0;
+    }
+
+    .clouse {
+      position: relative;
+      top: -20px;
+      left: 75px;
+      border: #ff5252;
+      cursor: pointer;
+      opacity: 0.7;
+      transition: opacity 0.2s ease-in-out;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }

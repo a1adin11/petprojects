@@ -1,0 +1,93 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Rubik+Doodle+Shadow&display=swap");
+
+body {
+  margin: 0;
+  font-family: "Inert", system-ui;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #e7f6ff;
+}
+
+* {
+  font-family: "Inert", system-ui;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(255, 255, 255) #ffffff;
+}
+
+/* для Chrome/Edge/Safari */
+*::-webkit-scrollbar {
+  height: 12px;
+  width: 12px;
+}
+*::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: #c1c5bd;
+  border-radius: 5px;
+}
+
+.wrapper {
+  background: #ffffff;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.04);
+  border-radius: 20px;
+  max-width: 1080px;
+  margin: 50px auto;
+}
+
+//
+.content {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+
+  .Sneakers {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    justify-content: space-between;
+  }
+}
+
+.upCard {
+  margin-bottom: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .Search {
+    display: flex;
+    border: solid 1px #f3f3f3;
+    border-radius: 10px;
+    padding: 0 15px;
+
+    input {
+      border: 0;
+      padding: 13px;
+      font-size: 16px;
+      width: 200px;
+    }
+
+    img {
+      margin-top: 7%;
+    }
+
+    .close {
+      position: absolute;
+      right: 40px;
+      top: 325px;
+      cursor: pointer;
+    }
+  }
+}
+
+.sideBordWrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+//

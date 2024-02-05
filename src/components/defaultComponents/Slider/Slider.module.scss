@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Rubik+Doodle+Shadow&display=swap');
+
+.slider {
+  margin: 50px 65px 0px;
+  width: 960px;
+  height: 300px;
+  left: 145px;
+  top: 258px;
+
+  background: #f4efe9;
+  border-radius: 20px;
+
+  .frog {
+    position: relative;
+    left: 200px;
+  }
+
+  .adidasLogo {
+    margin: 10px;
+    z-index: 0;
+    position: relative;
+    top: -240px;
+  }
+
+  .paragraph {
+    b {
+      color: #8bb43c;
+    }
+
+    position: relative;
+    top: -250px;
+    left: 55px;
+    display: block;
+    width: 240px;
+    height: 102px;
+  }
+
+  button {
+    position: relative;
+    width: 177px;
+    height: 47px;
+    left: 55px;
+    top: -250px;
+    border: none;
+    background: #a5d364;
+    border-radius: 110px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    color: #f4efe9;
+    line-height: 16px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: lighten($color: #9dd558, $amount: 5%);
+    }
+  }
+}
