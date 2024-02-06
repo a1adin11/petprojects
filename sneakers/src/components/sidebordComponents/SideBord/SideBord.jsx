@@ -6,12 +6,6 @@ import axios from "axios";
 import Slider from "../../defaultComponents/Slider/Slider";
 
 const SideBord = ({ closeSideBar, onRemove, items = [] }) => {
-  React.useEffect =
-    (() => {
-      axios.get("http://localhost:3000/cart");
-    },
-    []);
-
   return (
     <>
       <Slider />

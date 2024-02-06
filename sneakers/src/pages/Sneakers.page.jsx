@@ -1,4 +1,4 @@
-import { React, useContext } from "react";
+import React from "react";
 
 import Card from "../components/defaultComponents/Card/Card";
 import Slider from "../components/defaultComponents/Slider/Slider";
