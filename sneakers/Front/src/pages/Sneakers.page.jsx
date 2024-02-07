@@ -65,7 +65,8 @@ const SneakersPage = ({
             )
             .map((obj) => (
               <Card
-                key={obj.ImageUrl}
+                key={obj.id}
+                id = {obj.id}
                 name={obj.name}
                 price={obj.price}
                 url={obj.ImageUrl}

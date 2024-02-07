@@ -1,17 +1,17 @@
 import React from "react";
 import style from "./Card.module.scss";
 
-const Card = ({ onPluse, onFavorite, url, name, price }) => {
+const Card = ({ onPluse, onFavorite, url, name, price, isFavorite = false, id }) => {
   const [isChecked, setChecked] = React.useState(false);
-  const [isCheckedFavorite, setisCheckedFavorite] = React.useState(false);
+  const [isCheckedFavorite, setisCheckedFavorite] = React.useState(isFavorite);
 
   const onClickPlus = () => {
     setChecked(!isChecked);
-    onPluse({ url, name, price });
+    onPluse({ url, name, price, id });
   };
 
   const isChackedFavorite = () => {
-    onFavorite({ url, name, price });
+    onFavorite({ url, name, price, id });
     setisCheckedFavorite(!isCheckedFavorite);
   };
 

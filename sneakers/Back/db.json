@@ -4,94 +4,75 @@
       "name": "Мужские Кроссовки Nike Blazer Mid Suede",
       "price": "12 999",
       "ImageUrl": "/image/Sneakers/1.jpg",
-      "id": "2faf"
+      "id": "1"
     },
     {
       "name": "Мужские Кроссовки Nike Air Max 270",
       "price": "10 599 руб.",
       "ImageUrl": "/image/Sneakers/2.jpg",
-      "id": "255d"
+      "id": "2"
     },
     {
       "name": "Мужские Кроссовки Nike Blazer Mid Suede",
       "price": "12 999 руб.",
       "ImageUrl": "/image/Sneakers/3.jpg",
-      "id": "07fa"
+      "id": "3"
     },
     {
       "name": "Кроссовки Puma X Aka Boku Future Rider",
       "price": "8 999 руб.",
       "ImageUrl": "/image/Sneakers/4.jpg",
-      "id": "4298"
+      "id": "4"
     },
     {
       "name": "Мужские Кроссовки Under Armour Curry 8",
       "price": "15 199 руб.",
       "ImageUrl": "/image/Sneakers/5.jpg",
-      "id": "fedd"
+      "id": "5"
     },
     {
       "name": "Мужские Кроссовки Nike Kyrie 7",
       "price": "11 299 руб.",
       "ImageUrl": "/image/Sneakers/6.jpg",
-      "id": "ecd3"
+      "id": "6"
     },
     {
       "name": "Мужские Кроссовки Nike Kyrie 7",
       "price": "10 799 руб.",
       "ImageUrl": "/image/Sneakers/7.jpg",
-      "id": "6d16"
+      "id": "7"
     },
     {
       "name": "Мужские Кроссовки Nike LeBron XVIII",
       "price": "16 499 руб.",
       "ImageUrl": "/image/Sneakers/8.jpg",
-      "id": "f848"
+      "id": "8"
     },
     {
       "name": "Мужские Кроссовки Nike Lebron XVIII Low",
       "price": "13 999 руб.",
       "ImageUrl": "/image/Sneakers/9.jpg",
-      "id": "2e85"
+      "id": "9"
     },
     {
       "name": "Мужские Кроссовки Nike Blazer Mid Suede",
       "price": "8 499 руб.",
       "ImageUrl": "/image/Sneakers/10.png",
-      "id": "4054"
+      "id": "10"
     },
     {
       "name": "Кроссовки Puma X Aka Boku Future Rider",
       "price": "8 999 руб.",
       "ImageUrl": "/image/Sneakers/11.png",
-      "id": "1521"
+      "id": "1"
     },
     {
       "name": "Мужские Кроссовки Nike Kyrie Flytrap IV",
       "price": "11 299 руб.",
       "ImageUrl": "/image/Sneakers/12.jpg",
-      "id": "7a52"
+      "id": "12"
     }
   ],
   "cart": [],
-  "favorite": [
-    {
-      "id": "52e9",
-      "url": "/image/Sneakers/1.jpg",
-      "name": "Мужские Кроссовки Nike Blazer Mid Suede",
-      "price": "12 999"
-    },
-    {
-      "id": "0b51",
-      "url": "/image/Sneakers/2.jpg",
-      "name": "Мужские Кроссовки Nike Air Max 270",
-      "price": "10 599 руб."
-    },
-    {
-      "id": "71a5",
-      "url": "/image/Sneakers/7.jpg",
-      "name": "Мужские Кроссовки Nike Kyrie 7",
-      "price": "10 799 руб."
-    }
-  ]
+  "favorite": []
 }
