@@ -64,7 +64,7 @@
       "name": "Кроссовки Puma X Aka Boku Future Rider",
       "price": "8 999 руб.",
       "ImageUrl": "/image/Sneakers/11.png",
-      "id": "1"
+      "id": "11"
     },
     {
       "name": "Мужские Кроссовки Nike Kyrie Flytrap IV",
@@ -74,5 +74,6 @@
     }
   ],
   "cart": [],
-  "favorite": []
+  "favorite": [],
+  "orders": []
 }

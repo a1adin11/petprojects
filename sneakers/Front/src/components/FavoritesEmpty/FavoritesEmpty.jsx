@@ -11,8 +11,8 @@ const FavoritesEmpty = () => {
         alt="пусто ((("
       />
       <div className={style.textBlock}>
-        <h1>Закладок нет :(</h1>
-        <p>Вы ничего не добавляли в закладки</p>
+        <h1>{title}</h1>
+        <p>{description}</p>
       </div>
       <button className={style.ExitButton}>
         <img

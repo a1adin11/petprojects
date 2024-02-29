@@ -1,14 +1,40 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import CartItem from "../CartItem/CartItem";
 import style from "./SideBord.module.scss";
 import CardEmty from "../CardEmpty/CardEmty";
 import axios from "axios";
-import Slider from "../../defaultComponents/Slider/Slider";
+import { AppContext } from "../../../App";
 
 const SideBord = ({ closeSideBar, onRemove, items = [] }) => {
+  const { setOpened, setCartItems, cartItems } = useContext(AppContext);
+  const [isOrderComplete, setIsOrderComplete] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [orderId, setOrderId] = useState(null);
+
+  const onClickOrder = async () => {
+    try {
+      setIsLoading(true);
+      const response = await axios.post("http://localhost:3000/orders", {
+        items: cartItems,
+      });
+      console.log(response);
+      setOrderId(response.data.id);
+      setIsOrderComplete(true);
+      await cartItems.map((item) =>
+        axios.delete(`http://localhost:3000/cart/${item.id}`)
+      );
+      // или await axios.put("http://localhost:3000/orders", {
+      //   items: cartItems,
+      // });
+      setCartItems([]);
+    } catch (e) {
+      alert(`Ошибка ${e}, Заказ не был принят :(`);
+    }
+    setIsLoading(false);
+  };
+
   return (
     <>
-      <Slider />
       <div className={style.sideboard_shadow}>
         <div className={style.sideboard}>
           <div className={style.sideControl}>
@@ -26,6 +52,7 @@ const SideBord = ({ closeSideBar, onRemove, items = [] }) => {
               <div className={style.Items}>
                 {items.map((obj) => (
                   <CartItem
+                    key={obj.id}
                     ImageUrl={obj.url}
                     price={obj.price}
                     title={obj.name}
@@ -46,7 +73,7 @@ const SideBord = ({ closeSideBar, onRemove, items = [] }) => {
                   <b>1074 руб.</b>
                 </li>
                 <li>
-                  <button>
+                  <button disabled={isLoading} onClick={onClickOrder}>
                     Оформить заказ
                     <img
                       className={style.strelka}
@@ -58,7 +85,22 @@ const SideBord = ({ closeSideBar, onRemove, items = [] }) => {
               </ul>
             </div>
           ) : (
-            <CardEmty onClickButton={closeSideBar} />
+            <CardEmty
+              title={isOrderComplete ? "Заказ оформлен!" : "Корзина пустая"}
+              description={
+                isOrderComplete
+                  ? `Ваш заказ #${orderId} скоро будет передан курьерской доставке`
+                  : "Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ."
+              }
+              img={
+                isOrderComplete
+                  ? "./image/SideBord/OrderComplete.svg"
+                  : "./image/SideBord/EmptyBox.png"
+              }
+              onClick={() => {
+                setOpened(false);
+              }}
+            />
           )}
         </div>
       </div>

@@ -2,19 +2,42 @@ import React from "react";
 
 import Card from "../components/defaultComponents/Card/Card";
 import Slider from "../components/defaultComponents/Slider/Slider";
-import axios from "axios";
 
 const SneakersPage = ({
   items,
   searchValue,
   setSearchValue,
+  favoriteItems,
   onChangeSearchInput,
   onAddToCart,
-  onAddToFavorite
+  onAddToFavorite,
+  readyLoading,
 }) => {
-
   if (items.length === 0) return <>нет элементов</>;
-  // const items = useContext(Context);
+
+  const renderItems = () => {
+    const filtedItems = items.filter((obj) =>
+      obj.name.toLowerCase().includes(searchValue.toLowerCase())
+    );
+    return (readyLoading ? filtedItems : [...Array[8]]).map((item) => (
+      <Card
+        key={item.id}
+        id={item.id}
+        name={item.name}
+        price={item.price}
+        url={item.ImageUrl}
+        onPluse={(productItem) => onAddToCart(productItem)}
+        onFavorite={(likedItem) => onAddToFavorite(likedItem)}
+        isFavorite={favoriteItems.some(
+          (obj) => Number(obj.id) === Number(item.id)
+        )}
+        loading={true}
+
+        //some работает как find, только find возвращает true или udefinde, а some true или false
+      />
+    ));
+  };
+
   return (
     <>
       <Slider />
@@ -58,23 +81,7 @@ const SneakersPage = ({
           </div>
         </div>
         {/* .......................................................... */}
-        <div className="Sneakers">
-          {items
-            .filter((obj) =>
-              obj.name.toLowerCase().includes(searchValue.toLowerCase())
-            )
-            .map((obj) => (
-              <Card
-                key={obj.id}
-                id = {obj.id}
-                name={obj.name}
-                price={obj.price}
-                url={obj.ImageUrl}
-                onPluse={(productItem) => onAddToCart(productItem)}
-                onFavorite={(likedItem) => onAddToFavorite(likedItem)}
-              />
-            ))}
-        </div>
+        <div className="Sneakers">{renderItems()}</div>
       </div>
     </>
   );

@@ -1,15 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import style from "./CartEmpty.module.scss";
+import { AppContext } from "../../../App";
 
-const CardEmty = (props) => {
+const CardEmty = ({ title, description, img, onClick }) => {
+  const { setOpened } = useContext(AppContext);
   return (
     <div className={style.CartEmpty}>
-      <img width={120} height={120} src="./image/SideBord/EmptyBox.png" alt="Пусто(((" />
-      <h1>Корзина пуста</h1>
-      <p>Добавьте хотя бы одну пару кроссовок, чтобы сделать заказ.</p>
-      <button className={style.ExitButton} onClick={props.onClickButton}>
-        <img className={style.ReversStrelka} src="./image/SideBord/ReversStrelka.png" alt="назад" /> 
+      <img width={170} height={170} src={img} alt="Пусто(((" />
+      <h1>{title}</h1>
+      <p>{description}</p>
+      <button className={style.ExitButton} onClick={onClick}>
+        <img
+          className={style.ReversStrelka}
+          src="./image/SideBord/ReversStrelka.png"
+          alt="назад"
+        />
         Вернуться назад
       </button>
     </div>

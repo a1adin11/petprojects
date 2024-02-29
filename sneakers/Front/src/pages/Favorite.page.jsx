@@ -1,50 +1,50 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 
 import Card from "../components/defaultComponents/Card/Card";
 import axios from "axios";
 import FavoritesEmpty from "../components/FavoritesEmpty/FavoritesEmpty";
+import { AppContext } from "../App";
+import CardEmty from "../components/sidebordComponents/CardEmpty/CardEmty";
+import { keyboard } from "@testing-library/user-event/dist/keyboard";
 
-const FavoritePage = ({
-  favoriteItems,
-  setFavoriteItems,
-  favoriteItemsTwo,
-  setFavoriteItemsTwo,
-  onAddToCart,
-  onAddToFavorite,
-}) => {
-  useEffect(() => {
-    axios
-      .get("http://localhost:3000/favorite")
-      .then((res) => setFavoriteItems(res.data));
-  }, [favoriteItemsTwo]);
+const FavoritePage = ({}) => {
+  const { favoriteItems, onAddToCart, onAddToFavorite } =
+    useContext(AppContext);
 
   return (
     <div className="content">
-      <div className="upCard">
-        <h1>Закладки</h1>
-      </div>
-      {/* .......................................................... */}
-      {console.log(favoriteItems.length)}
       {favoriteItems.length > 0 ? (
-        <div className="Sneakers">
-          {favoriteItems.map((obj) => (
-            <Card
-              id={obj.id}
-              key={obj.id}
-              name={obj.name}
-              price={obj.price}
-              url={obj.url}
-              onPluse={(productItem) => onAddToCart(productItem)}
-              onFavorite={(likedItem) => onAddToFavorite(likedItem)}
-              isFavorite={true}
-            />
-          ))}
-        </div>
+        <>
+          <div className="upCard">
+            <h1>Закладки</h1>
+          </div>
+          {/* .......................................................... */}
+          {console.log(favoriteItems.length)}
+
+          <div className="Sneakers">
+            {favoriteItems.map((item) => (
+              <Card
+                key={item.id}
+                id={item.id}
+                name={item.name}
+                price={item.price}
+                url={item.url}
+                onPluse={(productItem) => onAddToCart(productItem)}
+                onFavorite={(likedItem) => onAddToFavorite(likedItem)}
+                isFavorite={true}
+                loading
+              />
+            ))}
+          </div>
+        </>
       ) : (
-        <FavoritesEmpty />
-        
-      )
-      }
+        <CardEmty
+          img={"./image/Slider/emptyFavorite.png"}
+          title={"Закладок нет :"}
+          description={"Вы ничего не добавляли в закладки"}
+          onClick={keyboard}
+        />
+      )}
     </div>
   );
 };
