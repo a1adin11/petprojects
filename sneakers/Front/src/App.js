@@ -29,6 +29,9 @@ function App() {
 
   const [isLoadingReady, setIsLoadingReady] = useState(false);
 
+  const totalPrice = cartItems.reduce((sum, item) => Number(item.price.replaceAll(/\D/g, "")) + sum, 0) + " руб.";
+
+
   useEffect(() => {
     async function fetchData() {
       setIsLoadingReady(false);
@@ -59,7 +62,7 @@ function App() {
       if (cartItems.find((obj) => Number(obj.id) === Number(productItem.id))) {
         onRemoveToCart(Number(productItem.id));
         setCartItemsTwo((prev) =>
-          prev.filter((obj) => Number(obj.id) === !Number(productItem.id))
+          prev.filter((obj) => Number(obj.id) !== Number(productItem.id))
         );
       } else {
         const { data } = await axios.post(
@@ -75,6 +78,7 @@ function App() {
           setCartItemsTwo([]);
         }
       }
+      console.log(productItem);
     } catch (e) {
       alert(`ошибуа ${e}, не удалось добавить товар в корзину`);
     }
@@ -89,7 +93,7 @@ function App() {
       ) {
         axios.delete(`http://localhost:3000/favorite/${likedItem.id}`);
         setFavoriteItems((prev) =>
-          prev.filter((obj) => Number(obj.id) === !Number(likedItem.id))
+          prev.filter((obj) => Number(obj.id) !== Number(likedItem.id))
         );
       } else {
         const { data } = await axios.post(
@@ -111,7 +115,7 @@ function App() {
   const onRemoveToCart = (id) => {
     axios.delete(`http://localhost:3000/cart/${id}`);
     setCartItems((prev) =>
-      prev.filter((item) => Number(item.id) === !Number(id))
+      prev.filter((item) => Number(item.id) !== Number(id))
     );
   };
 
@@ -138,6 +142,7 @@ function App() {
         onAddToCart,
         onAddToFavorite,
         setOpened,
+        totalPrice,
       }}
     >
       <div className="wrapper">

@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import style from "./Header.module.scss";
 import { Link } from "react-router-dom";
+import { AppContext } from "../../../App";
+
+
 
 const Header = (props) => {
+
+  const { totalPrice } = useContext(AppContext);
+
+  
+
   return (
     <header>
-      <Link to={"/"} style={{ textDecoration: "none", color: '#000' }}>
+      <Link to={"/"} style={{ textDecoration: "none", color: "#000" }}>
         <div className={style.headerLeft}>
           <img src="/image/logo.png" alt="Logo" width={40} height={40} />
           <div className={style.headerInfo}>
@@ -19,7 +27,7 @@ const Header = (props) => {
           <li onClick={props.onClickCart}>
             <img src="/image/props/Korzina.svg" alt="Корзина" />
             <span>
-              <b>1205 руб.</b>
+              <b>{totalPrice}</b>
             </span>
           </li>
           <li>

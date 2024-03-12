@@ -1,7 +1,7 @@
 import React from "react";
 import style from "./FavoritesEmpty.module.scss";
 
-const FavoritesEmpty = () => {
+const FavoritesEmpty = (title, description) => {
   return (
     <div className={style.wrapper}>
       <img

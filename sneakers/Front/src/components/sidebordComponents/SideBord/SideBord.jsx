@@ -10,12 +10,14 @@ const SideBord = ({ closeSideBar, onRemove, items = [] }) => {
   const [isOrderComplete, setIsOrderComplete] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [orderId, setOrderId] = useState(null);
+  const {totalPrice} = useContext(AppContext);
 
   const onClickOrder = async () => {
     try {
       setIsLoading(true);
       const response = await axios.post("http://localhost:3000/orders", {
         items: cartItems,
+        total: totalPrice,
       });
       console.log(response);
       setOrderId(response.data.id);
@@ -65,12 +67,12 @@ const SideBord = ({ closeSideBar, onRemove, items = [] }) => {
                 <li>
                   <span>Итого:</span>
                   <div></div>
-                  <b>21 498 руб.</b>
+                  <b>{totalPrice}</b>
                 </li>
                 <li>
                   <span>Налог 5%:</span>
                   <div></div>
-                  <b>1074 руб.</b>
+                  <b>{Math.ceil(totalPrice.replace(/\D/g, "") * 0.05) + " руб."}</b>
                 </li>
                 <li>
                   <button disabled={isLoading} onClick={onClickOrder}>

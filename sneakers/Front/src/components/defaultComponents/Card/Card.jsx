@@ -16,8 +16,6 @@ const Card = ({
 }) => {
   const { isAddedItem } = useContext(AppContext);
 
-  console.log(name, isAddedItem(id));
-
   const [isCheckedFavorite, setisCheckedFavorite] = useState(isFavorite);
 
   const onClickPlus = () => {

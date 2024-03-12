@@ -2,7 +2,6 @@ import React, { useContext, useEffect } from "react";
 
 import Card from "../components/defaultComponents/Card/Card";
 import axios from "axios";
-import FavoritesEmpty from "../components/FavoritesEmpty/FavoritesEmpty";
 import { AppContext } from "../App";
 import CardEmty from "../components/sidebordComponents/CardEmpty/CardEmty";
 import { keyboard } from "@testing-library/user-event/dist/keyboard";
