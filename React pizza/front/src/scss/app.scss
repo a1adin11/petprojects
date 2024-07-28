@@ -1,10 +1,12 @@
-@import 'variables';
-@import 'libs/normalize';
+@import "variables";
+@import "libs/normalize";
 
-@import './components_SCSS/all';
+@import "./components_SCSS/all";
 
 body {
   background-color: $background;
+  margin: 0px;
+  padding: 0px;
 }
 
 .wrapper {
@@ -13,26 +15,113 @@ body {
   background-color: #fff;
   margin: 50px auto;
   border-radius: 10px;
-  max-width: 1400px;
+  max-width: 1500px;
+
+  @media (max-width: 650px) {
+    width: calc(100vw - 20px);
+    margin: 50px 15px;
+  }
+
+  @media (max-width: 350px) {
+    width: 100vw;
+    margin: 50px auto;
+  }
+}
+
+.content__middle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .content {
-  padding: 40px 0;
+  padding: 20px 0;
 
   &__title {
     margin: 35px 0;
+    font-weight: 800;
+  }
+
+  &__search {
+    display: flex;
+    align-items: center;
+
+    img {
+      position: relative;
+      left: 33px;
+    }
+
+    svg {
+      width: 18px;
+      position: relative;
+      left: -36px;
+      opacity: 0.15;
+
+      &:hover {
+        fill: red;
+        opacity: 0.6;
+      }
+    }
+
+    input {
+      border: 1px solid $gray-line;
+      padding: 11px 40px;
+      width: 300px;
+      height: 50px;
+      border-radius: 30px;
+      font-size: 16px;
+
+
+      &:focus {
+        border: 2px solid #dbdbdb;
+        box-shadow: 0px 0px 20px $gray-line;
+      }
+    }
   }
 
   &__items {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    grid-column-gap: 20px;
+
+    @media (max-width: 1400px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (max-width: 1200px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 840px) {
+      grid-template-columns: repeat(1, 1fr);
+    }
   }
 
   &__top {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-top: 20px;
+
+    @media (max-width: 1260px) {
+      flex-direction: column-reverse;
+
+      .categories {
+        margin-top: 20px;
+      }
+    }
+
+    @media (max-width: 460px) {
+      .categories {
+        ul {
+          li {
+            padding: 8px 20px;
+            font-size: 8px;
+          }
+        }
+      }
+    }
   }
 }
 
@@ -103,6 +192,10 @@ body {
         color: darken($color: #b6b6b6, $amount: 50);
       }
     }
+  }
+
+  .content__items {
+    display: block;
   }
 
   &__item {

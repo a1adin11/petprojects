@@ -7,4 +7,6 @@ export interface Pizza {
   sizes: number[];
   category: number;
   rating: number[];
+  isLoadingReady: boolean;
+  onPluse: void;
 }

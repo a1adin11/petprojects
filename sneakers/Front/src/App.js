@@ -29,8 +29,11 @@ function App() {
 
   const [isLoadingReady, setIsLoadingReady] = useState(false);
 
-  const totalPrice = cartItems.reduce((sum, item) => Number(item.price.replaceAll(/\D/g, "")) + sum, 0) + " руб.";
-
+  const totalPrice =
+    cartItems.reduce(
+      (sum, item) => Number(item.price.replaceAll(/\D/g, "")) + sum,
+      0
+    ) + " руб.";
 
   useEffect(() => {
     async function fetchData() {
@@ -155,20 +158,7 @@ function App() {
         ) : null}
         <Header onClickCart={() => setOpened(true)} />
         <Routes>
-          <Route
-            path="/favorites"
-            exact
-            element={
-              <FavoritePage
-                favoriteItems={favoriteItems}
-                setFavoriteItems={setFavoriteItems}
-                favoriteItemsTwo={favoriteItemsTwo}
-                setFavoriteItemsTwo={setFavoriteItemsTwo}
-                onAddToCart={onAddToCart}
-                onAddToFavorite={onAddToFavorite}
-              />
-            }
-          />
+          <Route path="/favorites" exact element={<FavoritePage />} />
           <Route
             path="/"
             exact
@@ -179,8 +169,6 @@ function App() {
                 setSearchValue={setSearchValue}
                 favoriteItems={favoriteItems}
                 onChangeSearchInput={onChangeSearchInput}
-                onAddToCart={onAddToCart}
-                onAddToFavorite={onAddToFavorite}
                 cartItems={cartItems}
                 readyLoading={isLoadingReady}
               />

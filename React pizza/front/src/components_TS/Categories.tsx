@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setPizzaFilterState } from "../redux/slices/filterSlice";
+import { RootState } from "../redux/store";
 
 const Categories = () => {
-  const [currentCategory, setCurrentCategory] = React.useState(0);
-
-  const categories: string[] = [
+  const categories = [
     "Все",
     "Мясные",
     "Вегетарианские",
@@ -12,16 +13,26 @@ const Categories = () => {
     "Закрытые",
   ];
 
+  const dispatch = useDispatch();
+  const curentSort = useSelector(
+    (state: RootState) => state.filterState.filterItem
+  );
+
   return (
     <div className="categories">
       <ul>
-        {categories.map((text: string, index: number) => (
+        {categories.map((text, index) => (
           <li
             key={index}
             onClick={() => {
-              setCurrentCategory(index);
+              dispatch(
+                setPizzaFilterState({
+                  text: text,
+                  value: index,
+                })
+              );
             }}
-            className={currentCategory === index ? "active" : ""}
+            className={curentSort.value === index ? "active" : ""}
           >
             {text}
           </li>

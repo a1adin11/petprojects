@@ -1,7 +1,15 @@
-@import '../variables';
+@import "../variables";
 
 .sort {
   position: relative;
+
+  @media (max-width: 500px) {
+    
+    b {
+      display: none;
+    }
+  }
+
   &__label {
     display: flex;
     align-items: center;

@@ -1,9 +1,22 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { AppContext } from "../App";
+import { RootState } from "../redux/store";
+import { setPizzaSortState } from "../redux/slices/filterSlice";
 
 const Sort = () => {
   const [isVisiblePopup, setIsVisiblePopup] = React.useState(false);
-  const [currentCategory, setCurrentCategory] = React.useState(0);
-  const list: string[] = ["популярности", "цене", "алфавиту"];
+  const list = [
+    { name: "популярности", property: "rating" },
+    { name: "цене", property: "price" },
+    { name: "алфавиту", property: "title" },
+  ];
+
+  const currentSort = useSelector(
+    (state: RootState) => state.filterState.sortItem
+  );
+
+  const dispatch = useDispatch();
 
   return (
     <div className="sort">
@@ -22,21 +35,22 @@ const Sort = () => {
         </svg>
         <b>Сортировка по:</b>
         <span onClick={() => setIsVisiblePopup(!isVisiblePopup)}>
-          {list[currentCategory]}
+          {currentSort.name}
         </span>
       </div>
       {isVisiblePopup && (
         <div className="sort__popup">
           <ul>
-            {list.map((category, index: number) => (
+            {list.map((obj, index) => (
               <li
+                key={index}
                 onClick={() => {
-                  setCurrentCategory(index);
+                  dispatch(setPizzaSortState(obj));
                   setIsVisiblePopup(!isVisiblePopup);
                 }}
-                className={currentCategory === index ? "active" : ""}
+                className={currentSort.name === obj.name ? "active" : ""}
               >
-                {category}
+                {obj.name}
               </li>
             ))}
           </ul>
