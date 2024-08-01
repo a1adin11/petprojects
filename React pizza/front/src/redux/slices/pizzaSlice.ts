@@ -1,4 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { types } from "util";
+import { PizzaApi } from "../../API/api";
 
 export interface IPizzaItem {
   id: string;
@@ -11,16 +13,27 @@ export interface IPizzaItem {
   rating: number;
 }
 
+export interface ICartItem {
+  id: string;
+  url: string;
+  title: string;
+  types: number;
+  sizes: number;
+  price: number;
+}
+
 export interface IPizzas {
   pizzaItems: IPizzaItem[];
-  IsLoadingReady: boolean;
-  cartItems: IPizzaItem[];
+  isLoading: boolean;
+  cartItems: ICartItem[];
+  error: string | undefined;
 }
 
 const initialState: IPizzas = {
   pizzaItems: [],
-  cartItems:[],
-  IsLoadingReady: true,
+  cartItems: [],
+  isLoading: false,
+  error: undefined,
 };
 
 export const pizzaSlice = createSlice({
@@ -30,12 +43,28 @@ export const pizzaSlice = createSlice({
     pushPizzaItems: (state, actions) => {
       state.pizzaItems = actions.payload;
     },
-    setIsLoadingReady: (state, action) => {
-      state.IsLoadingReady = action.payload;
-    },
-    onAddToCart: (state, action) => {
-        state.cartItems = action.payload;
-    }
+  },
+  extraReducers(builder) {
+    builder
+      .addMatcher(
+        PizzaApi.endpoints.getAllPizzas.matchFulfilled,
+        (state, action) => {
+          state.pizzaItems = action.payload;
+          state.isLoading = false;
+          state.error = undefined;
+        }
+      )
+      .addMatcher(PizzaApi.endpoints.getAllPizzas.matchPending, (state) => {
+        state.isLoading = true;
+        state.error = undefined;
+      })
+      .addMatcher(
+        PizzaApi.endpoints.getAllPizzas.matchRejected,
+        (state, action) => {
+          state.isLoading = false;
+          state.error = action.error.message;
+        }
+      );
   },
 });
 

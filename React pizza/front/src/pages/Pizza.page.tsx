@@ -8,9 +8,12 @@ import { setSearchValue } from "../redux/slices/filterSlice";
 import { RootState } from "../redux/store";
 import { useGetAllPizzasQuery } from "../API/api";
 import { IPizzaItem } from "../redux/slices/pizzaSlice";
+import React from "react";
 
 const PizzaPage = () => {
   const dispatch = useDispatch();
+  //FIXME: сделать плюшку с usrRef на input
+  // const inputRef = React.createRef();
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -19,22 +22,25 @@ const PizzaPage = () => {
   const searchValue = useSelector(
     (state: RootState) => state.filterState.searchValue
   );
-  // const items = useSelector((state: RootState) => state.pizzaItems.pizzaItems);
-  const isLoadingReady = useSelector(
-    (state: RootState) => state.pizzaItems.IsLoadingReady
-  );
+
   const category = useSelector(
     (state: RootState) => state.filterState.filterItem
   );
+
   const sotr = useSelector((state: RootState) => state.filterState.sortItem);
-  const { data: items = [] } = useGetAllPizzasQuery({
+
+  const { data: itemsResponse = [], isLoading } = useGetAllPizzasQuery({
     category: category.value == 0 ? "" : category.value,
     _sort: sotr.property,
   });
 
+  const items = useSelector((state: RootState) => state.pizzaItems.pizzaItems);
+
   const filteredItems: IPizzaItem[] = items.filter((item) =>
     item.title.toLowerCase().includes(searchValue.toLowerCase())
   );
+
+  
 
   return (
     <div className="container">
@@ -73,7 +79,7 @@ const PizzaPage = () => {
       <div className="content__items">
         {/* тут магия с фильтрацией наёбывается, так что нужно починить */}
         {(searchValue ? filteredItems : items).map((item) => (
-          <PizzaBlock {...item} isLoadingReady={isLoadingReady} key={item.title}/>
+          <PizzaBlock {...item} isLoadingReady={isLoading} key={item.title} />
         ))}
       </div>
     </div>

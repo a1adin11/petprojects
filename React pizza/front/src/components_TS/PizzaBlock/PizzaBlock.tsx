@@ -1,7 +1,9 @@
 import React from "react";
 import PizzaBlockSkeleton from "./PizzaBlockSkeleton";
 import { IPizzaItem } from "../../redux/slices/pizzaSlice";
-
+import { useDispatch } from "react-redux";
+import { onAddToCart } from "../../redux/slices/cartItemsSlice";
+import { useAddCartItemMutation } from "../../API/api";
 
 interface Props extends IPizzaItem {
   isLoadingReady: boolean;
@@ -20,10 +22,13 @@ const PizzaBlock: React.FC<Props> = ({
 }) => {
   const [currentWidth, setCurrentWidth] = React.useState(0);
   const [currentSize, setCurrentSize] = React.useState(1);
+  const dispatch = useDispatch();
+  const [addCartItem, { isLoading, isSuccess, error }] =
+    useAddCartItemMutation();
 
   return (
     <div className="pizza-block__wrapper">
-      {isLoadingReady ? (
+      {!isLoadingReady ? (
         <div className="pizza-block">
           <img className="pizza-block__image" src={url} alt="Pizza" />
           <h4 className="pizza-block__title">{title}</h4>
@@ -55,7 +60,28 @@ const PizzaBlock: React.FC<Props> = ({
           </div>
           <div className="pizza-block__bottom">
             <div className="pizza-block__price">от {price} ₽</div>
-            <button className="button button--outline button--add">
+            <button
+              className="button button--outline button--add"
+              onClick={async () => {
+                console.log("Добавлено");
+                const newCartItem = {
+                  id: id,
+                  url: url,
+                  title: title,
+                  types: currentWidth,
+                  sizes: currentSize,
+                  price: price,
+                };
+                dispatch(onAddToCart(newCartItem));
+                await addCartItem(newCartItem)
+                  .then((response) => {
+                    console.log("Пицца успешно добавлена", response);
+                  })
+                  .catch((error) => {
+                    console.error("Ошибка добавления пиццы", error);
+                  });
+              }}
+            >
               <svg
                 width="12"
                 height="12"

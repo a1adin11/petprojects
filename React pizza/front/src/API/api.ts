@@ -1,11 +1,11 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { IPizzaRequest } from "../types";
-import { IPizzaItem } from "../redux/slices/pizzaSlice";
+import { ICartItem, IPizzaItem } from "../redux/slices/pizzaSlice";
 
 export const PizzaApi = createApi({
   reducerPath: "PizzaApi",
   baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:3000/" }),
-  tagTypes: ["Pizzas"],
+  tagTypes: ["Pizzas", "CartItems", "CartItem"],
   endpoints: (builder) => ({
     getAllPizzas: builder.query<IPizzaItem[], IPizzaRequest>({
       query: (request) => ({
@@ -17,7 +17,23 @@ export const PizzaApi = createApi({
       }),
       providesTags: () => [{ type: "Pizzas" }],
     }),
+    getCartItems: builder.query<ICartItem[], void>({
+      query: () => "/cartItems",
+      providesTags: () => [{ type: "CartItems" }],
+    }),
+    addCartItem: builder.mutation<ICartItem, ICartItem>({
+      query: (newItem) => ({
+        url: "/cartItems",
+        method: "POST",
+        body: newItem,
+      }),
+      invalidatesTags: [{ type: "CartItem" }],
+    }),
   }),
 });
 
-export const { useGetAllPizzasQuery } = PizzaApi;
+export const {
+  useGetAllPizzasQuery,
+  useGetCartItemsQuery,
+  useAddCartItemMutation,
+} = PizzaApi;

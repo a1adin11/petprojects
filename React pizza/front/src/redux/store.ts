@@ -3,6 +3,7 @@ import pizzaReducer from "./slices/pizzaSlice";
 import { setupListeners } from "@reduxjs/toolkit/query";
 import { PizzaApi } from "../API/api";
 import filterReducer from "./slices/filterSlice";
+import cartItemsReducer from "./slices/cartItemsSlice";
 import { buildGetDefaultMiddleware } from "@reduxjs/toolkit/dist/getDefaultMiddleware";
 
 export const store = configureStore({
@@ -10,6 +11,7 @@ export const store = configureStore({
     [PizzaApi.reducerPath]: PizzaApi.reducer,
     pizzaItems: pizzaReducer,
     filterState: filterReducer,
+    cartItemsState: cartItemsReducer,
   },
   middleware: (buildGetDefaultMiddleware) =>
     buildGetDefaultMiddleware().concat(PizzaApi.middleware),

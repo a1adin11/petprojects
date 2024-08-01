@@ -4,8 +4,15 @@
       "id": "0000",
       "url": "./image/Pizzas/pizza1.png",
       "title": "Чизбургер-пицца",
-      "types": [0, 1],
-      "sizes": [26, 30, 40],
+      "types": [
+        0,
+        1
+      ],
+      "sizes": [
+        26,
+        30,
+        40
+      ],
       "price": 415,
       "category": 3,
       "rating": 8
@@ -14,8 +21,13 @@
       "id": "0001",
       "url": "./image/Pizzas/pizza2.png",
       "title": "Сырная",
-      "types": [0],
-      "sizes": [26, 40],
+      "types": [
+        0
+      ],
+      "sizes": [
+        26,
+        40
+      ],
       "price": 245,
       "category": 3,
       "rating": 6
@@ -24,8 +36,13 @@
       "id": "0010",
       "url": "./image/Pizzas/pizza3.png",
       "title": "Креветки по-азиатски",
-      "types": [0],
-      "sizes": [26, 40],
+      "types": [
+        0
+      ],
+      "sizes": [
+        26,
+        40
+      ],
       "price": 245,
       "category": 4,
       "rating": 6
@@ -34,8 +51,13 @@
       "id": "0011",
       "url": "./image/Pizzas/pizza4.png",
       "title": "Сырный цыплёнок",
-      "types": [0],
-      "sizes": [26, 40],
+      "types": [
+        0
+      ],
+      "sizes": [
+        26,
+        40
+      ],
       "price": 245,
       "category": 1,
       "rating": 6
@@ -44,8 +66,15 @@
       "id": "0100",
       "url": "./image/Pizzas/pizza5.png",
       "title": "Пепперони Фреш с перцем",
-      "types": [0, 1],
-      "sizes": [26, 30, 40],
+      "types": [
+        0,
+        1
+      ],
+      "sizes": [
+        26,
+        30,
+        40
+      ],
       "price": 803,
       "category": 2,
       "rating": 4
@@ -54,8 +83,13 @@
       "id": "0101",
       "url": "./image/Pizzas/pizza6.png",
       "title": "Цыпленок барбекю",
-      "types": [0],
-      "sizes": [26, 40],
+      "types": [
+        0
+      ],
+      "sizes": [
+        26,
+        40
+      ],
       "price": 295,
       "category": 1,
       "rating": 4
@@ -64,8 +98,14 @@
       "id": "0110",
       "url": "./image/Pizzas/pizza7.png",
       "title": "Кисло-сладкий цыпленок",
-      "types": [1],
-      "sizes": [26, 30, 40],
+      "types": [
+        1
+      ],
+      "sizes": [
+        26,
+        30,
+        40
+      ],
       "price": 275,
       "category": 1,
       "rating": 2
@@ -74,8 +114,13 @@
       "id": "0111",
       "url": "./image/Pizzas/pizza8.png",
       "title": "Крэйзи пепперони",
-      "types": [0],
-      "sizes": [30, 40],
+      "types": [
+        0
+      ],
+      "sizes": [
+        30,
+        40
+      ],
       "price": 580,
       "category": 4,
       "rating": 2
@@ -84,8 +129,15 @@
       "id": "1000",
       "url": "./image/Pizzas/pizza9.png",
       "title": "Пепперони",
-      "types": [0, 1],
-      "sizes": [26, 30, 40],
+      "types": [
+        0,
+        1
+      ],
+      "sizes": [
+        26,
+        30,
+        40
+      ],
       "price": 675,
       "category": 1,
       "rating": 9
@@ -94,8 +146,15 @@
       "id": "1001",
       "url": "./image/Pizzas/pizza10.png",
       "title": "Маргарита",
-      "types": [0, 1],
-      "sizes": [26, 30, 40],
+      "types": [
+        0,
+        1
+      ],
+      "sizes": [
+        26,
+        30,
+        40
+      ],
       "price": 450,
       "category": 4,
       "rating": 10
@@ -104,8 +163,15 @@
       "id": "1010",
       "url": "./image/Pizzas/pizza11.png",
       "title": "четыре сезона",
-      "types": [0, 1],
-      "sizes": [26, 30, 40],
+      "types": [
+        0,
+        1
+      ],
+      "sizes": [
+        26,
+        30,
+        40
+      ],
       "price": 395,
       "category": 5,
       "rating": 10
@@ -114,13 +180,61 @@
       "id": "1011",
       "url": "./image/Pizzas/pizza12.png",
       "title": "Овощи и грибы 🌱",
-      "types": [0, 1],
-      "sizes": [26, 30, 40],
+      "types": [
+        0,
+        1
+      ],
+      "sizes": [
+        26,
+        30,
+        40
+      ],
       "price": 285,
       "category": 5,
       "rating": 7
     }
   ],
-  "cartItems": [],
+  "cartItems": [
+    {
+      "id": "0110",
+      "url": "./image/Pizzas/pizza7.png",
+      "title": "Кисло-сладкий цыпленок",
+      "types": 0,
+      "sizes": 1,
+      "price": 275
+    },
+    {
+      "id": "0111",
+      "url": "./image/Pizzas/pizza8.png",
+      "title": "Крэйзи пепперони",
+      "types": 0,
+      "sizes": 1,
+      "price": 580
+    },
+    {
+      "id": "0111",
+      "url": "./image/Pizzas/pizza8.png",
+      "title": "Крэйзи пепперони",
+      "types": 0,
+      "sizes": 1,
+      "price": 580
+    },
+    {
+      "id": "0111",
+      "url": "./image/Pizzas/pizza8.png",
+      "title": "Крэйзи пепперони",
+      "types": 0,
+      "sizes": 1,
+      "price": 580
+    },
+    {
+      "id": "1010",
+      "url": "./image/Pizzas/pizza11.png",
+      "title": "четыре сезона",
+      "types": 0,
+      "sizes": 1,
+      "price": 395
+    }
+  ],
   "orders": {}
 }
