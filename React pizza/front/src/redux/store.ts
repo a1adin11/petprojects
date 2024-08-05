@@ -9,7 +9,7 @@ import { buildGetDefaultMiddleware } from "@reduxjs/toolkit/dist/getDefaultMiddl
 export const store = configureStore({
   reducer: {
     [PizzaApi.reducerPath]: PizzaApi.reducer,
-    pizzaItems: pizzaReducer,
+    pizzaItemsState: pizzaReducer,
     filterState: filterReducer,
     cartItemsState: cartItemsReducer,
   },

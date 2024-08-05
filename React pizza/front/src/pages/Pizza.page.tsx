@@ -34,13 +34,13 @@ const PizzaPage = () => {
     _sort: sotr.property,
   });
 
-  const items = useSelector((state: RootState) => state.pizzaItems.pizzaItems);
+  const items = useSelector(
+    (state: RootState) => state.pizzaItemsState.pizzaItems
+  );
 
   const filteredItems: IPizzaItem[] = items.filter((item) =>
     item.title.toLowerCase().includes(searchValue.toLowerCase())
   );
-
-  
 
   return (
     <div className="container">

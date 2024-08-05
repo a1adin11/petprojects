@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { IPizzaRequest } from "../types";
 import { ICartItem, IPizzaItem } from "../redux/slices/pizzaSlice";
+import { argv } from "process";
 
 export const PizzaApi = createApi({
   reducerPath: "PizzaApi",
@@ -27,7 +28,14 @@ export const PizzaApi = createApi({
         method: "POST",
         body: newItem,
       }),
-      invalidatesTags: [{ type: "CartItem" }],
+      invalidatesTags: [{ type: "CartItems" }],
+    }),
+    removeCartItem: builder.mutation<ICartItem, string>({
+      query: (id) => ({
+        url: `/cartItems/${id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: [{ type: "CartItems" }],
     }),
   }),
 });
@@ -36,4 +44,5 @@ export const {
   useGetAllPizzasQuery,
   useGetCartItemsQuery,
   useAddCartItemMutation,
+  useRemoveCartItemMutation,
 } = PizzaApi;

@@ -72,7 +72,7 @@ const PizzaBlock: React.FC<Props> = ({
                   sizes: currentSize,
                   price: price,
                 };
-                dispatch(onAddToCart(newCartItem));
+                // dispatch(onAddToCart(newCartItem));
                 await addCartItem(newCartItem)
                   .then((response) => {
                     console.log("Пицца успешно добавлена", response);

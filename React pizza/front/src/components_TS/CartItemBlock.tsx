@@ -1,7 +1,32 @@
 import React, { FC } from "react";
 import { ICartItem } from "../redux/slices/pizzaSlice";
+import { useSelector } from "react-redux";
+import { RootState } from "../redux/store";
+import { current } from "@reduxjs/toolkit";
+import { useAddCartItemMutation, useRemoveCartItemMutation } from "../API/api";
 
-const CartItemBlock: FC<ICartItem> = ({ url, title, types, sizes, price }) => {
+const CartItemBlock: FC<ICartItem> = ({
+  id,
+  url,
+  title,
+  types,
+  sizes,
+  price,
+}) => {
+  const cartItems = useSelector(
+    (state: RootState) => state.cartItemsState.cartItems
+  );
+
+  const countPizza = cartItems.reduce(
+    (count, item) => (item.title === title ? ++count : count),
+    0
+  );
+
+  const [addCartItem] = useAddCartItemMutation();
+
+  const [removeCartItem, { isLoading, isSuccess, error }] =
+    useRemoveCartItemMutation();
+
   return (
     <div className="content__items">
       <div className="cart__item">
@@ -14,7 +39,20 @@ const CartItemBlock: FC<ICartItem> = ({ url, title, types, sizes, price }) => {
           <p>{sizes == 0 ? 26 : sizes == 1 ? 30 : 40}см.</p>
         </div>
         <div className="cart__item-count">
-          <div className="button button--outline button--circle cart__item-count-minus">
+          <div
+            className="button button--outline button--circle cart__item-count-minus"
+            onClick={async () => {
+              console.log("удалено");
+              // dispatch(onAddToCart(newCartItem));
+              await removeCartItem(id)
+                .then((response) => {
+                  console.log("Пицца успешно удалена", response);
+                })
+                .catch((error) => {
+                  alert(error);
+                });
+            }}
+          >
             <svg
               width="10"
               height="10"
@@ -32,8 +70,29 @@ const CartItemBlock: FC<ICartItem> = ({ url, title, types, sizes, price }) => {
               />
             </svg>
           </div>
-          <b>2</b>
-          <div className="button button--outline button--circle cart__item-count-plus">
+          <b>{countPizza}</b>
+          <div
+            className="button button--outline button--circle cart__item-count-plus"
+            onClick={async () => {
+              console.log("Добавлено");
+              const newCartItem = {
+                id: id,
+                url: url,
+                title: title,
+                types: types,
+                sizes: sizes,
+                price: price,
+              };
+              // dispatch(onAddToCart(newCartItem));
+              await addCartItem(newCartItem)
+                .then((response) => {
+                  console.log("Пицца успешно добавлена", response);
+                })
+                .catch((error) => {
+                  console.error("Ошибка добавления пиццы", error);
+                });
+            }}
+          >
             <svg
               width="10"
               height="10"
@@ -53,10 +112,17 @@ const CartItemBlock: FC<ICartItem> = ({ url, title, types, sizes, price }) => {
           </div>
         </div>
         <div className="cart__item-price">
-          <b>{price} ₽</b>
+          <b>{price * countPizza} ₽</b>
         </div>
         <div className="cart__item-remove">
-          <div className="button button--outline button--circle">
+          <div
+            className="button button--outline button--circle"
+            onClick={async () => {
+              for (let index = 0; index < countPizza; index++) {
+                await removeCartItem(id);
+              }
+            }}
+          >
             <svg
               width="10"
               height="10"

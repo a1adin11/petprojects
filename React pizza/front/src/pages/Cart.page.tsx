@@ -91,7 +91,10 @@ const CartPage = () => {
             <span>Очистить корзину</span>
           </div>
         </div>
-        {cartItems && uniqueCartItems.map((item) => <CartItemBlock {...item} />)}
+        {cartItems &&
+          uniqueCartItems.map((item) => (
+            <CartItemBlock {...item} key={item.id} />
+          ))}
 
         <div className="cart__bottom">
           <div className="cart__bottom-details">
