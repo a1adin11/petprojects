@@ -194,6 +194,47 @@
       "rating": 7
     }
   ],
-  "cartItems": [],
+  "cartItems": [
+    {
+      "id": "0110",
+      "url": "./image/Pizzas/pizza7.png",
+      "title": "Кисло-сладкий цыпленок",
+      "types": 0,
+      "sizes": 1,
+      "price": 275
+    },
+    {
+      "id": "0110",
+      "url": "./image/Pizzas/pizza7.png",
+      "title": "Кисло-сладкий цыпленок",
+      "types": 0,
+      "sizes": 1,
+      "price": 275
+    },
+    {
+      "id": "0110",
+      "url": "./image/Pizzas/pizza7.png",
+      "title": "Кисло-сладкий цыпленок",
+      "types": 0,
+      "sizes": 1,
+      "price": 275
+    },
+    {
+      "id": "0111",
+      "url": "./image/Pizzas/pizza8.png",
+      "title": "Крэйзи пепперони",
+      "types": 0,
+      "sizes": 0,
+      "price": 580
+    },
+    {
+      "id": "0111",
+      "url": "./image/Pizzas/pizza8.png",
+      "title": "Крэйзи пепперони",
+      "types": 0,
+      "sizes": 0,
+      "price": 580
+    }
+  ],
   "orders": {}
 }
