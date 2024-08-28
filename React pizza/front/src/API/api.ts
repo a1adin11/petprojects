@@ -1,7 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { IPizzaRequest } from "../types";
 import { ICartItem, IPizzaItem } from "../redux/slices/pizzaSlice";
-import { argv } from "process";
 
 export const PizzaApi = createApi({
   reducerPath: "PizzaApi",

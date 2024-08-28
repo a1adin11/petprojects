@@ -1,6 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
 import pizzaReducer from "./slices/pizzaSlice";
-import { setupListeners } from "@reduxjs/toolkit/query";
 import { PizzaApi } from "../API/api";
 import filterReducer from "./slices/filterSlice";
 import cartItemsReducer from "./slices/cartItemsSlice";

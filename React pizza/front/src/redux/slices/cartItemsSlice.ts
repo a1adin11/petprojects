@@ -1,8 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { error } from "console";
-import { stat } from "fs";
-import { act } from "react-dom/test-utils";
-import CartItemBlock from "../../components_TS/CartItemBlock";
 import { PizzaApi } from "../../API/api";
 
 //FIXME: extraReduser отдаёт undefinded, это странно
