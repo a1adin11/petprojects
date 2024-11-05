@@ -1,0 +1,19 @@
+@import "../scss/libs/normalize";
+@import "../scss/libs/_variables";
+
+
+
+::-webkit-scrollbar {
+  width: 2px; /* ширина для вертикального скролла */
+  height: 2px; /* высота для горизонтального скролла */
+  background-color: $background;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: $font-color;
+  border-radius: 120em;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: $font-color;
+}

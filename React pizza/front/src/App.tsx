@@ -1,12 +1,9 @@
-import React from "react";
 import { Routes, Route } from "react-router";
 import "./scss/app.scss";
 import Header from "./components_TS/Header";
 import PizzaPage from "./pages/Pizza.page";
 import CartPage from "./pages/Cart.page";
 import NotFound from "./pages/Not.Found";
-
-export const AppContext = React.createContext("");
 
 const onAddToCart = () => {};
 

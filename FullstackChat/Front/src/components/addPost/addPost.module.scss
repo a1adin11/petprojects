@@ -1,0 +1,150 @@
+@import "../../scss/libs/_variables";
+.root {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  background-color: white;
+  padding: 20px 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+
+  form {
+    width: 100%;
+
+    .text {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      background-color: white;
+
+      img {
+        width: 35px;
+      }
+
+      input {
+        border: none;
+        margin-left: 10px;
+        padding: 10px 10px 0 0;
+        flex: 1;
+        border-bottom: 2px solid $border;
+
+        &::placeholder {
+          font-weight: 600;
+          color: $black-font-color;
+          transition: all 0.2s;
+        }
+
+        &:hover {
+          &::placeholder {
+            font-weight: 600;
+            color: rgba(0, 0, 0, 0.385);
+          }
+        }
+
+        &:focus {
+          &::placeholder {
+            font-weight: 600;
+            font-size: 20px;
+          }
+        }
+      }
+
+      .added {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+
+        svg {
+          cursor: pointer;
+          width: 20px;
+          height: 20px;
+          transition: stroke 0.3s ease;
+          margin-left: 5px;
+
+          path {
+            fill: rgba(0, 0, 0, 0.469);
+          }
+
+          &:hover {
+            path {
+              transition: all 0.3s ease;
+              fill: rgba(60, 60, 60, 0.81);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .bottomHidden {
+    display: none;
+  }
+
+  .bottom {
+    display: flex;
+    margin-top: 10px;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .submit {
+      border-radius: 10px;
+      background-color: $purple;
+      color: white;
+      border: none;
+      padding: 0px 10px;
+      text-align: center;
+      font-weight: 500;
+      line-height: 10px;
+      max-height: 35px;
+      cursor: pointer;
+    }
+
+    .tags {
+      padding: 0 10px;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+
+    .options {
+      padding: 0 40px;
+      border: 2px solid $border;
+      border-radius: 10px;
+      padding: 5px;
+      margin-left: 40px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      max-height: 35px;
+
+      input {
+        border: none;
+
+        flex: 1;
+
+        &::placeholder {
+          font-weight: 600;
+          color: $black-font-color;
+        }
+      }
+
+      button {
+        width: 22px;
+        height: 22px;
+        border-radius: 6px;
+        background-color: $purple;
+        color: white;
+        border: none;
+        font-size: 26px;
+        text-align: center;
+        line-height: 20px;
+        cursor: pointer;
+      }
+    }
+  }
+}

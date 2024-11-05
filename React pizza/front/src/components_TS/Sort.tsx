@@ -1,6 +1,5 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { AppContext } from "../App";
 import { RootState } from "../redux/store";
 import { setPizzaSortState } from "../redux/slices/filterSlice";
 

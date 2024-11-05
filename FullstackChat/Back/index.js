@@ -1,47 +1,33 @@
 import express from "express";
-import mongoose from "mongoose";
-import dotenv from "dotenv";
-import multer from "multer";
+import cors from "cors";
 
 import {
   createPostValidation,
   loginValidation,
   registerValidation,
 } from "./validations.js";
-import checkAuth from "./utils/checkAuth.js";
 
 import * as UserController from "./controllers/UserController.js";
 import * as PostController from "./controllers/PostController.js";
-import handelValidationErrors from "./utils/handelValidationErrors.js";
+import * as AttachmentController from "./controllers/AttachmentController.js";
 
-dotenv.config();
+import handelValidationErrors from "./middlewares/handelValidationErrors.js";
+import isMyContent from "./middlewares/isMyContent.js";
+import checkAuth from "./middlewares/checkAuth.js";
+import * as config from "./utils/utilsConfig.js";
 
-mongoose
-  .connect(process.env.MONGO_URL)
-  .then(() => {
-    console.log("DB connected");
-  })
-  .catch((err) => {
-    console.log("DB is failed =>", err);
-  });
+config.DbConnection();
 
 const app = express();
 
-const storage = multer.diskStorage({
-  destination: (_, __, cb) => {
-    cb(null, "uploads");
-  },
-  filename: (_, file, cb) => {
-    cb(null, file.originalname);
-  },
-});
+const corsOptions = {
+  origin: ["http://localhost:5173", "http://127.0.0.1:5173"], // Добавьте допустимые адреса
+  credentials: true, // Разрешить куки
+};
 
-const upload = multer({ storage });
-
-const port = process.env.PORT || 3000;
+app.use(cors(corsOptions));
 
 app.use(express.json());
-app.use("/uploads", express.static("uploads"));
 
 app.post(
   "/auth/login",
@@ -49,22 +35,26 @@ app.post(
   handelValidationErrors,
   UserController.login
 );
+
 app.post(
   "/auth/register",
   registerValidation,
   handelValidationErrors,
   UserController.register
 );
+
 app.get("/auth/me", checkAuth, UserController.getMe);
 
-app.post("/upload", checkAuth, upload.single("image"), (req, res) => {
-  res.json({
-    url: `/uploads/${req.file.originalname}`,
-  });
-});
+app.post(
+  "/upload",
+  config.upload.array("files", 10),
+  AttachmentController.pushUploads
+);
 
 app.get("/posts", createPostValidation, PostController.getAll);
+
 app.get("/posts/:id", createPostValidation, PostController.getOne);
+
 app.post(
   "/posts",
   checkAuth,
@@ -72,23 +62,29 @@ app.post(
   handelValidationErrors,
   PostController.create
 );
+
 app.delete(
   "/posts/:id",
   checkAuth,
+  isMyContent,
   createPostValidation,
   PostController.remove
 );
+
 app.patch(
   "/posts/:id",
   checkAuth,
+  isMyContent,
   createPostValidation,
   handelValidationErrors,
   PostController.update
 );
 
-app.listen(port, (err) => {
+app.patch("/like", checkAuth, PostController.setLike);
+
+app.listen(config.port, (err) => {
   if (err) {
     console.log("Server failed");
   }
-  console.log(`Server is running at http://localhost:${port}`);
+  console.log(`Server is running at http://localhost:${config.port}`);
 });

@@ -1,0 +1,121 @@
+@import "../../scss/libs/_variables";
+
+.root {
+  background-color: white;
+  width: 60%;
+  height: auto;
+  margin-bottom: 10px;
+  border-radius: 10px;
+
+  .header {
+    color: white;
+    padding: 5px 10px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 50px;
+    border-bottom: solid 1px $border;
+
+    .name {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      span {
+        height: 20px;
+        color: $black-font-color;
+        margin-left: 10px;
+        text-wrap: nowrap;
+        cursor: pointer;
+      }
+    }
+
+    img {
+      cursor: pointer;
+      width: 35px;
+    }
+
+    .date {
+      height: 20px;
+      font-size: 10px;
+      color: $black-font-color;
+      margin-left: 10px;
+      text-wrap: nowrap;
+      cursor: pointer;
+    }
+  }
+  .content {
+    span {
+      color: black;
+      margin: 20px;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      object-fit: cover;
+      padding: 10px 0px 0px;
+    }
+  }
+
+  .bottomBoard {
+    padding: 10px;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    .functional {
+      width: 50px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+
+      svg {
+        cursor: pointer;
+        width: 20px;
+        height: 20px;
+        transition: stroke 0.3s ease;
+
+        path {
+          fill: white;
+          stroke: rgba(0, 0, 0, 0.498);
+        }
+
+        &:hover {
+          path {
+            transition: stroke 0.3s ease;
+            stroke: red;
+          }
+        }
+      }
+
+      .comment:hover {
+        path {
+          transition: stroke 0.3s ease;
+          stroke: $blue;
+        }
+      }
+    }
+
+    .view {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      span {
+        color: rgba(0, 0, 0, 0.498);
+      }
+
+      svg {
+        fill: rgba(0, 0, 0, 0.356);
+        stroke: rgba(0, 0, 0, 0.146);
+      }
+    }
+  }
+}

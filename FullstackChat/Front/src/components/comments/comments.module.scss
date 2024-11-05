@@ -1,0 +1,46 @@
+@import "../../scss/libs/_variables";
+
+.root {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+
+  span {
+    color: rgb(0, 0, 0);
+    font-size: 20px;
+    font-weight: 600;
+  }
+  .commentItems {
+    .item {
+      padding: 10px;
+      display: flex;
+      flex-direction: row;
+      border-bottom: solid 1px $border;
+
+      img {
+        width: 30px;
+        height: 30px;
+        margin-right: 10px;
+        position: relative;
+        top: 5px;
+      }
+      .text {
+        span {
+          font-size: 18px;
+        }
+
+        p {
+          font-size: 12px;
+          color: $black-font-color;
+          max-width: 300px;
+          word-wrap: break-word;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
+        }
+      }
+    }
+  }
+}

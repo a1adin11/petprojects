@@ -1,0 +1,14 @@
+@import "../../../scss/libs/_variables";
+
+.root {
+    color: white;
+  font-size: 20px;
+  border-radius: 20px;
+  border: none;
+  box-shadow: 0px 0px 10px 5px $purple;
+  background-image: linear-gradient(to left, #609fdc, #895ad0);
+
+  &:active {
+    box-shadow: 0px 0px 0px 0px;
+  }
+}

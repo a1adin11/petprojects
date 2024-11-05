@@ -1,11 +1,14 @@
 import PostModel from "../models/Post.js";
 
 export const create = async (req, res) => {
+  console.log(req.body);
+
   try {
+    console.log(req.body);
+
     const doc = new PostModel({
       title: req.body.title,
       text: req.body.text,
-      imageUrl: req.body.imageUrl,
       tags: req.body.tags,
       user: req.userId,
     });
@@ -52,6 +55,50 @@ export const getOne = async (req, res) => {
         console.log(err);
         res.status(404).json({ message: "Пост не найден" });
       });
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({
+      message: "Не удалось получить пост",
+    });
+  }
+};
+
+export const setLike = async (req, res) => {
+  try {
+    const postId = req.body.id;
+
+    const post = await PostModel.findById(postId);
+    if (!post) {
+      return res.status(404).json({ message: "Пост не найден" });
+    }
+
+    const isLiked = post.likedUsers.includes(userId);
+
+    let updatedPost;
+
+    if (isLiked) {
+      updatedPost = await PostModel.findByIdAndUpdate(
+        postId,
+        {
+          $inc: { likesCount: -1 },
+          $pull: { likedUsers: userId },
+        },
+        { returnDocument: "after" }
+      );
+    } else {
+      updatedPost = await PostModel.findByIdAndUpdate(
+        postId,
+        {
+          $inc: { likesCount: 1 },
+          $push: { likedUsers: userId },
+        },
+        { returnDocument: "after" }
+      );
+    }
+    res.json({
+      ...updatedPost._doc, // Все поля документа
+      isLiked, // Добавляем поле isLiked
+    });
   } catch (e) {
     console.log(e);
     res.status(500).json({

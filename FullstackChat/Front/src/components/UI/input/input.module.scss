@@ -1,0 +1,43 @@
+@import "../../../scss/libs/_variables";
+
+.root {
+    position: relative;
+
+  .passwordEye {
+    z-index: 100;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+  }
+
+  .normal {
+    padding: 10px;
+    border: 3px solid $font-color;
+    border-radius: 10px;
+    width: 100%;
+  }
+
+  .errors {
+    padding: 10px;
+    border: 3px solid rgba(250, 65, 28, 0.672);
+    border-radius: 10px;
+    width: 100%;
+  }
+
+  .errorField {
+    background-color: white;
+    border: 1px solid rgba(250, 65, 28, 0.672);
+    border-radius: 5px;
+    padding: 1px 2px;
+    z-index: 100;
+    font-size: 10px;
+    position: absolute;
+    bottom: 0;
+    transform: translateY(5px);
+    left: 10px;
+    display: inline;
+  }
+}

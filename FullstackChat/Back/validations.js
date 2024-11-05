@@ -15,6 +15,14 @@ export const loginValidation = [
 export const createPostValidation = [
   body("title").isLength({ min: 3 }).isString(),
   body("text").isLength({ min: 10 }).isString(),
-  body("tags").optional().isString(),
+  body("tags")
+    .optional()
+    .isArray()
+    .custom((value) => {
+      if (value.some((tag) => typeof tag !== "string")) {
+        throw new Error("All tags must be strings");
+      }
+      return true;
+    }),
   body("imageUrl").optional().isString(),
 ];
