@@ -1,64 +1,67 @@
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import { MongoClient, GridFSBucket } from "mongodb";
 import { GridFsStorage } from "multer-gridfs-storage";
-import pkg from "gridfs-stream";
 import multer from "multer";
-
-const { Grid } = pkg;
-let gfs;
+import g from "gridfs-stream";
 
 dotenv.config();
+
+export let gfs;
 
 export const port = process.env.PORT || 3000;
 
 export const DbConnection = async () => {
-  try {
-    await mongoose
-      .connect(process.env.MONGO_URL)
-      .then(() => console.log("DB connected"))
-      .catch((err) => console.error("DB connection failed:", err));
+  return await mongoose
+    .connect(process.env.MONGO_URL)
+    .then(async () => {
+      console.log("DB connected");
+    })
+    .catch((err) => console.error("DB connection failed:", err));
+};
 
-    // Инициализация GridFS после успешного подключения
-    try {
-      mongoose.connection.once("open", () => {
-        const bucket = new mongoose.mongo.GridFSBucket(mongoose.connection.db, {
-          bucketName: "uploads",
-        });
+mongoose.connection.on("connected", async () => {
+  console.log("start init GridFS");
+  gfs = await g(
+    mongoose.connection.db,
+    mongoose.connection.db.collection("uploads.files")
+  );
+  console.log("GridFS successfully initialized");
+});
 
-        gfs = {
-          bucket,
-          model: mongoose.model(
-            "uploads",
-            mongoose.Schema({
-              filename: String,
-              contentType: String,
-            })
-          ),
-        };
-
-        console.log("GridFS successfully initialized");
-      });
-    } catch (error) {
-      console.error("GridFS connection failed", error);
-    }
-  } catch (error) {
-    console.error("DB connection failed:", error);
-  }
+export const mongoBucket = {
+  mongoUrl: process.env.MONGO_URL, // Получите URL подключения из переменной окружения
+  databaseName: `${mongoose.connection.name}`, // Замените на имя базы данных
+  getGridFSBucket: async () => {
+    const client = new MongoClient(process.env.MONGO_URL);
+    await client.connect();
+    const db = client.db(mongoose.connection.name);
+    return new GridFSBucket(db);
+  },
 };
 
 // Настройка GridFs Storage
-export const storage = new GridFsStorage({
-  url: process.env.MONGO_URL, // Используйте переменные среды
-  file: (req, file) => {
-    return new Promise((resolve, reject) => {
-      const filename = `${Date.now()}-${file.originalname}`;
-      const fileInfo = {
-        filename: filename,
-        bucketName: "uploads",
-      };
-      resolve(fileInfo);
-    });
-  },
-});
+// export const storage = new GridFsStorage({
+//   url: process.env.MONGO_URL,
+//   file: async (req, file) => {
+//     return new Promise((resolve, reject) => {
+//       try {
+//         const filename = `${Date.now()}-${file.originalname}`;
+//         const fileInfo = {
+//           filename: filename,
+//           bucketName: "uploads",
+//         };
+//         console.log(fileInfo); // _id будет добавлен multer-gridfs-storage
+
+//         resolve(fileInfo);
+//       } catch (e) {
+//         reject(e);
+//       }
+//     });
+//   },
+// });
+
+const storage = multer.memoryStorage(); // Хранение в памяти
 
 export const upload = multer({ storage });
+export default mongoBucket;

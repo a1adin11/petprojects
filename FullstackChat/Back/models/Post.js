@@ -1,22 +1,18 @@
-import { randomUUID } from "crypto";
 import mongoose from "mongoose";
 
 const PostSchema = new mongoose.Schema(
   {
-    // title: {
-    //   type: String,
-    //   required: true,
-    // },
     text: {
       type: String,
       required: true,
     },
-    attachment: {
-      type: [String]
+    attachments: {
+      type: [String],
+      required: false,
     },
     tags: {
       type: [String],
-      required: true,
+      required: false,
     },
     viewsCount: {
       type: Number,

@@ -17,7 +17,6 @@ import checkAuth from "./middlewares/checkAuth.js";
 import * as config from "./utils/utilsConfig.js";
 
 config.DbConnection();
-
 const app = express();
 
 const corsOptions = {

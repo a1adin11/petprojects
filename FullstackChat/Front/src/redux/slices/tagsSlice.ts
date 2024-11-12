@@ -1,11 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 interface IAddtagItems {
-  TagItems: string[];
+  tagItems: string[];
 }
 
 const initialState: IAddtagItems = {
-  TagItems: [],
+  tagItems: [],
 };
 
 const tagsSlice = createSlice({
@@ -13,16 +13,17 @@ const tagsSlice = createSlice({
   initialState,
   reducers: {
     onAddToTags: (state, action) => {
-      state.TagItems = [...state.TagItems, action.payload];
+      state.tagItems = [...state.tagItems, action.payload];
     },
     onRemoveToTags: (state, action) => {
-      state.TagItems = state.TagItems.filter(
-        (item) => item !== action.payload
-      );
+      state.tagItems = state.tagItems.filter((item) => item !== action.payload);
+    },
+    clearTags: (state) => {
+      state.tagItems = [];
     },
   },
 });
 
-export const { onAddToTags, onRemoveToTags } = tagsSlice.actions;
+export const { onAddToTags, onRemoveToTags, clearTags } = tagsSlice.actions;
 
 export default tagsSlice.reducer;

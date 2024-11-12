@@ -24,6 +24,7 @@ export interface IRequestLogin {
 export interface IRequestPost {
   text: string;
   tags?: string[];
+  attachments?: string[];
 }
 
 export interface IPostResolver {
@@ -31,6 +32,8 @@ export interface IPostResolver {
   attachments: File[];
 }
 
-// export interface IRegisterInfo {
+export interface IResponseAttachments {
+  attachmentsId: string[];
+}
 
 // }

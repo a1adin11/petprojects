@@ -13,7 +13,6 @@ export const loginValidation = [
 ];
 
 export const createPostValidation = [
-  body("title").isLength({ min: 3 }).isString(),
   body("text").isLength({ min: 10 }).isString(),
   body("tags")
     .optional()
@@ -24,5 +23,5 @@ export const createPostValidation = [
       }
       return true;
     }),
-  body("imageUrl").optional().isString(),
+  body("attachments").optional().isArray(),
 ];

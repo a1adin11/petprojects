@@ -7,17 +7,17 @@ export const create = async (req, res) => {
     console.log(req.body);
 
     const doc = new PostModel({
-      title: req.body.title,
       text: req.body.text,
       tags: req.body.tags,
       user: req.userId,
+      attachments: req.body.attachments,
     });
 
     const post = await doc.save();
 
     res.json(post);
   } catch (e) {
-    console.log(e);
+    console.log(e, "не удалось создать пост");
     res.status(500).json({
       message: "Не удалось создать статью",
     });
@@ -173,5 +173,7 @@ export const update = async (req, res) => {
     });
   }
 };
+
+
 
 //FIXME: Что то не так с patch запросом, доделать

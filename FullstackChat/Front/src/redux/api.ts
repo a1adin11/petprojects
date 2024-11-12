@@ -1,5 +1,11 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { IRequestLogin, IRequestPost, IRequestRegister, IResponseRegister } from "../types";
+import {
+  IRequestLogin,
+  IRequestPost,
+  IRequestRegister,
+  IResponseAttachments,
+  IResponseRegister,
+} from "../types";
 
 export const Api = createApi({
   reducerPath: "Api",
@@ -42,7 +48,7 @@ export const Api = createApi({
 
     addPost: builder.mutation<void, IRequestPost>({
       query: (formData) => ({
-        url: "/post", // Замените на ваш URL-адрес
+        url: "/posts", // Замените на ваш URL-адрес
         method: "POST",
         body: formData,
       }),
@@ -64,10 +70,19 @@ export const Api = createApi({
     //     }),
     //     invalidatesTags: [{ type: }],
     // }),
+    addAttachments: builder.mutation<IResponseAttachments, FormData>({
+      query: (formData) => ({
+        url: "/upload",
+        method: "POST",
+        body: formData,
+      }),
+      invalidatesTags: [{ type: "Post" }],
+    }),
   }),
 });
 
 export const {
+  useAddAttachmentsMutation,
   //   useGetAllPizzasQuery,
   //   useGetCartItemsQuery,
   //   useAddCartItemMutation,
